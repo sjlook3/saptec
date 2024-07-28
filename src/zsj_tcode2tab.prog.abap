@@ -1,21 +1,21 @@
 *&---------------------------------------------------------------------*
-*& Report Z_TAB_2_TCODE
+*& Report ZSJ_TCODE2TAB
 *&---------------------------------------------------------------------*
 *&
 *&---------------------------------------------------------------------*
-REPORT Z_TAB_2_TCODE.
+REPORT ZSJ_TCODE2TAB.
 
 TYPES: BEGIN OF ty_data,
          tcode    TYPE tstc-tcode,
-         ttext    TYPE tstct-ttext,
+         "ttext    TYPE tstct-ttext,
          pgmna    TYPE tstc-pgmna,
          tabname  TYPE d010tab-tabname,
          tabclass TYPE dd02l-tabclass,
-         ddtext   TYPE dd02t-ddtext,
+         "ddtext   TYPE dd02t-ddtext,
        END OF ty_data.
 
 DATA: it_data TYPE STANDARD TABLE OF ty_data WITH DEFAULT KEY.
-DATA: lv_langu TYPE sy-langu VALUE 'E'.
+"DATA: lv_langu TYPE sy-langu VALUE 'E'.
 
 *&--------------------------------------------------*
 PARAMETERS: p_tcode TYPE tstc-tcode.
@@ -24,20 +24,21 @@ PARAMETERS: p_tcode TYPE tstc-tcode.
 START-OF-SELECTION.
 
   SELECT tstc~tcode,
-    tstct~ttext,
+    "tstct~ttext,
     tstc~pgmna,
     d010tab~tabname,
-    dd02l~tabclass,
-    dd02t~ddtext
+    dd02l~tabclass",
+    "dd02t~ddtext
     FROM tstc
     INNER JOIN d010tab ON d010tab~master = tstc~pgmna
     INNER JOIN dd02l ON dd02l~tabname = d010tab~tabname
-    INNER JOIN dd02t ON dd02t~tabname = dd02l~tabname
-    INNER JOIN tstct ON tstct~tcode = tstc~tcode
+    "INNER JOIN dd02t ON dd02t~tabname = dd02l~tabname
+    "INNER JOIN tstct ON tstct~tcode = tstc~tcode
     INTO CORRESPONDING FIELDS OF TABLE @it_data
   WHERE tstc~tcode = @p_tcode
-    AND dd02t~ddlanguage = @lv_langu
-    AND tstct~sprsl = @lv_langu.
+    "AND dd02t~ddlanguage = @lv_langu
+    "AND tstct~sprsl = @lv_langu
+    .
 
   SORT: it_data BY tabclass DESCENDING tabname.
 

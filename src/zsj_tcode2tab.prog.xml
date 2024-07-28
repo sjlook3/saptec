@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <PROGDIR>
-    <NAME>Z_TAB_2_TCODE</NAME>
+    <NAME>ZSJ_TCODE2TAB</NAME>
     <SUBC>1</SUBC>
     <RLOAD>E</RLOAD>
     <FIXPT>X</FIXPT>
@@ -12,7 +12,7 @@
    <TPOOL>
     <item>
      <ID>R</ID>
-     <ENTRY>Program Z_TAB_2_TCODE</ENTRY>
+     <ENTRY>Program ZSL_TCODE2TAB</ENTRY>
      <LENGTH>21</LENGTH>
     </item>
    </TPOOL>
